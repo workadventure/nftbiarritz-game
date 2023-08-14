@@ -3,17 +3,18 @@
 import "./insideBoat.ts";
 import "./insideCapApartment.ts";
 import "./secretWay.js";
+import "./secretSentence.js";
 
 import { bootstrapExtra } from "@workadventure/scripting-api-extra";
 
-console.log('Script started successfully');
+console.info('Script started successfully');
 
 let currentPopup: any = undefined;
 
 // Waiting for the API to be ready
 WA.onInit().then(() => {
-    console.log('Scripting API ready');
-    console.log('Player tags: ',WA.player.tags)
+    console.info('Scripting API ready');
+    console.info('Player tags: ',WA.player.tags)
 
     WA.room.area.onEnter('clock').subscribe(() => {
         const today = new Date();
@@ -25,7 +26,8 @@ WA.onInit().then(() => {
 
     // The line below bootstraps the Scripting API Extra library that adds a number of advanced properties/features to WorkAdventure
     bootstrapExtra().then(() => {
-        console.log('Scripting API Extra ready');
+        console.info('Scripting API Extra ready');
+        WA.controls.disablePlayerProximityMeeting();
     }).catch(e => console.error(e));
 
 }).catch(e => console.error(e));

@@ -1,6 +1,6 @@
 /// <reference types="@workadventure/iframe-api-typings" />
 
-console.log('Script inside boat started successfully');
+console.info('Script inside boat started successfully');
 
 // Waiting for the API to be ready
 WA.onInit().then(() => {
@@ -25,6 +25,7 @@ WA.onInit().then(() => {
         WA.room.hideLayer("OutAbove/outBoatAbove6")
         WA.room.hideLayer("OutAbove/outBuilding2")
         WA.room.hideLayer("OutAbove/outBuilding1")
+        WA.room.hideLayer("OutAbove/outBuilding0")
         WA.room.hideLayer("OutAbove/outTent2")
         WA.room.hideLayer("Clouds")
         WA.room.hideLayer("Lights")
@@ -51,6 +52,7 @@ WA.onInit().then(() => {
         WA.room.showLayer("OutAbove/outBoatAbove6")
         WA.room.showLayer("OutAbove/outBuilding2")
         WA.room.showLayer("OutAbove/outBuilding1")
+        WA.room.hideLayer("OutAbove/outBuilding0")
         WA.room.showLayer("OutAbove/outTent2")
         WA.room.showLayer("Clouds")
         WA.room.showLayer("Lights")

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <meta name="title" content="My inventory">
+
+    <title>My inventory</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <style>
+        #inventoryContent{
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 4px;
+        }
+        .inventoryItem{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2px;
+            border: solid 1px white;
+            border-radius: 14px;
+            background-color: #00000046;
+        }
+        .inventoryItem img{
+            width: 40px;
+            height: 40px;
+            border-radius: 14px;
+        }
+    </style>
+
+
+    <script src="https://play.staging.workadventu.re/iframe_api.js"></script>
+    <script src="inventory.ts" type="module"></script>
+</head>
+<body>
+    <main class="p-2">
+        <div id="inventoryContent" class="d-flex align-items-center justify-content-center">
+            <div class="inventoryItem">
+                <img id="treasureEnigma-ko" src="./avatar.webp" alt="Treasure Enigma Avatar" />
+                <img id="treasureEnigma-ok" src="../treasureEnigma/avatar.webp" alt="Treasure Enigma Avatar" style="display: none; border: solid 4px yellow;" />
+            </div>
+            <div class="inventoryItem">
+                <img id="surfEnigma-ko" src="./avatar.webp" alt="Surf Enigma Avatar" />
+                <img id="surfEnigma-ok" src="../surfEnigma/avatar.webp" alt="Surf Enigma Avatar" style="display: none; border: solid 4px yellow;" />
+            </div>
+            <div class="inventoryItem">
+                <img id="waveEnigma-ko" src="./avatar.webp" alt="Wave Enigma Avatar" />
+                <img id="waveEnigma-ok" src="../waveEnigma/avatar.webp" alt="Wave Enigma Avatar" style="display: none; border: solid 4px yellow;" />
+            </div>
+        </div>
+    </main>
+</body>
+</html>

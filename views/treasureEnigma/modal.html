@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <meta name="title" content="My job wallet">
+
+    <title>Orientation Choice</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <script src="https://play.staging.workadventu.re/iframe_api.js"></script>
+</head>
+    <body>
+        <div style="background: transparent; 
+            color: white;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;"
+        >
+            <div
+                id="title"
+                style="font-size: 30px; padding: 25px; font-weight: bold;"
+            >
+                The Biarritz Map 🗺️
+            </div>
+            <div id="text" style=" padding: 10px 25px 10px 50px; font-size: 20px;">
+                <p>You have all the information to find the surfboard and the Biarritz mythic wave 🌊</p>
+                <p>Good luck my firend 🍀, see you soon 😘</p>
+            </div>
+            <img src="./map.png" alt="map" style="width: 100%; height: auto;">
+            <div class="text-align-right m-2">
+                <button class="btn bg-info cursor-pointer" id="closeButton" style="color: black;">
+                    Let's go! 🏄
+                </button>
+            </div>
+        </div>
+        <script src="modal.ts" type="module"></script>
+    </body>
+</html>

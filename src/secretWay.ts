@@ -1,6 +1,6 @@
 /// <reference types="@workadventure/iframe-api-typings" />
 
-console.log('Script secret way started successfully');
+console.info('Script secret way started successfully');
 
 const layers = [
     "secretway/1",
