@@ -5,17 +5,8 @@
         <link rel="stylesheet" type="text/css" href="./css.css">
     </head>
     <body>
-        <h1>Félicitation, tu viens de trouver un nouveau mot 🎉</h1>
-        <p>Voici le code : <span id="code" style="font-weight: bold;"></span></p>
-        <!-- show badge with picture associated -->
-        <div class="badges" style="display:flex;flex-direction: row;justify-content: center;align-items: center;">
-            <img id="badgefoundword1" src="./images/word1.png" alt="badge word 1" style="display: none; width: 60px;">
-            <img id="badgefoundword2" src="./images/word2.png" alt="badge word 2" style="display: none; width: 60px;">
-            <img id="badgefoundword3" src="./images/word3.png" alt="badge word 3" style="display: none; width: 60px;">
-            <img id="badgefoundword4" src="./images/word4.png" alt="badge word 4" style="display: none; width: 60px;">
-            <img id="badgefoundword5" src="./images/word5.png" alt="badge word 5" style="display: none; width: 60px;">
-            <img id="badgefoundword6" src="./images/word6.png" alt="badge word 6" style="display: none; width: 60px;">
-        </div>
+        <h1>La phrase secrète 👀</h1>
+        <!-- show words found -->
         <p style="font-size: 30px;">
             <span id="word1">---</span>
             <span id="word2">--------</span>
@@ -35,7 +26,8 @@
             <img id="badgeword6" src="./images/word6.png" alt="badge word 6" style="display: none;">
         </div>
 
-
+        <p style="display: none;" id="indiceTitle">Ton dernier indice :</p>
+        <p id="lastIndice" style="font-weight: bold;"></p>
 
         <script type="text/javascript">
             const sentence = {
@@ -46,20 +38,34 @@
                 word5: 'la',
                 word6: 'folie',
             }
+
+            const indices = {
+                word1: "Est-ce que tu aimes les jeux d'échecs avec le capitaine sur le pont ?",
+                word2: "Tu pourras découvrir un certain goût pour la chasse en soute !",
+                word3: "Un trésor se trouve à la vue de tous !",
+                word4: "Bien caché, il faut s'aventurer dans les coins les plus sombres de la soute !",
+                word5: "Est-ce que tu as déjà vu les appartements du capitaine et le trésor qu'il renferme ?",
+                word6: "Un un bateau, un capitaine, un trésor, un chemin secret, une île déseret... Tu pourras y faire une prière !",
+            }
+
             const url = new URL(window.location.toString());
             const wordsFound = url.searchParams.get("words");
             // show words find by user
-            for(const word of Object.keys(sentence)){
-                if(wordsFound.indexOf(word) != -1){
-                    document.getElementById(word).innerHTML = sentence[word];
-                    document.getElementById(`badge${word}`).style.display = "block";
+            if(wordsFound){
+                for(const word of Object.keys(sentence)){
+                    if(wordsFound.indexOf(word) != -1){
+                        document.getElementById(word).innerHTML = sentence[word];
+                        document.getElementById(`badge${word}`).style.display = "block";
+                    }
                 }
             }
 
-            // show the last word find by user
-            const currentWordFound = url.searchParams.get("current");
-            document.getElementById("code").innerHTML = sentence[currentWordFound]??'';
-            document.getElementById(`badgefound${currentWordFound}`).style.display = "block";
-        </script>        
+            // show the last indice
+            const currentIndice = url.searchParams.get("lastIndice");
+            if(currentIndice != undefined && currentIndice !== "noindice" && currentIndice !== "undefined"){
+                document.getElementById("indiceTitle").style.display = "block";
+                document.getElementById("lastIndice").innerHTML = indices[currentIndice];
+            }
+        </script>
     </body>
 </html>
