@@ -28,9 +28,79 @@ let nonExit2Popup: Popup|undefined = undefined;
 let timeOutIndice: NodeJS.Timeout|undefined;
 let timeOutIndiceEverySecond: NodeJS.Timeout|undefined;
 let lastIndice = "noindice";
+let isOpenSecretSentenceWebsite = false;
 
 // Waiting for the API to be ready
 WA.onInit().then(() => {
+    const url = new URL(WA.room.mapURL);
+
+    // disable player controls
+    WA.controls.disablePlayerControls();
+
+    // open rules of the game
+    WA.ui.modal.openModal({
+        title: "The game rules",
+        src: `${url.protocol}//${url.host}${url.protocol === 'https:' ? "/nftbiarritz-game/" : '/'}secretSentence/rules.html`,
+        allowApi: true,
+        allow: "microphone; camera",
+        position: "center",
+    }, () => {
+        initGame(url);
+        WA.ui.modal.closeModal();
+        getIndiceEverySecond();
+        WA.ui.actionBar.removeButton("start");
+    });
+
+    // add start button
+    WA.ui.actionBar.addButton({
+        id: "start",
+        label: "C'est parti !",
+        callback: () => {
+            initGame(url);
+            WA.ui.modal.closeModal();
+            getIndiceEverySecond();
+            WA.ui.actionBar.removeButton("start");
+        }
+    });
+});
+
+// function to init the game
+function initGame(url: URL){
+    // active player controls
+    WA.controls.restorePlayerControls();
+    
+    // add secret sentence button
+    WA.ui.actionBar.addButton({
+        id: "secrect-sentence",
+        type: "action",
+        imageSrc: `${url.protocol}//${url.host}${url.protocol === 'https:' ? "/nftbiarritz-game/" : '/'}secretSentence/images/key-white.svg`,
+        toolTip: "La phrase secrète",
+        callback: () => {
+            if(isOpenSecretSentenceWebsite){
+                WA.ui.modal.closeModal();
+                isOpenSecretSentenceWebsite = false;
+                return;
+            }
+
+            const wordsFound = Object.keys(WA.player.state.sentance as Sentance).filter((word) => {
+                // @ts-ignore
+                return (WA.player.state.sentance as Sentance)[word] === true;
+            });
+            WA.ui.modal.openModal({
+                title: "Review secret sentence 👀",
+                src: `${url.protocol}//${url.host}${url.protocol === 'https:' ? "/nftbiarritz-game/" : '/'}secretSentence/review.html?lastIndice=${lastIndice}&words=${wordsFound.join(",")}`,
+                allowApi: true,
+                allow: "microphone; camera",
+                position: "center",
+            }, () => {
+                WA.ui.modal.closeModal();
+                isOpenSecretSentenceWebsite = false;
+            });
+            isOpenSecretSentenceWebsite = true;
+        }
+    });
+
+    // init user state
     if(!WA.player.state.sentance){
         WA.player.state.sentance = {
             word1: false,
@@ -41,6 +111,8 @@ WA.onInit().then(() => {
             word6: false,
         };
     }
+
+    // init user interaction
     for(const word of [...words.keys()]){
         WA.room.area.onEnter(word).subscribe(() => {
             console.info(`You fin the word ${word}!`);
@@ -48,7 +120,6 @@ WA.onInit().then(() => {
             if((WA.player.state.sentance as Sentance)[word] === true) return;
             // @ts-ignore
             (WA.player.state.sentance as Sentance)[word] = true;
-            const url = new URL(WA.room.mapURL);
             const wordsFound = Object.keys(WA.player.state.sentance as Sentance).filter((word) => {
                 // @ts-ignore
                 return (WA.player.state.sentance as Sentance)[word] === true;
@@ -164,9 +235,7 @@ WA.onInit().then(() => {
     WA.room.area.onLeave('noneExit2').subscribe(() => {
         nonExit2Popup?.close();
     });
-
-    getIndiceEverySecond();
-});
+}
 
 // function to get an indice every 20 seconds
 function stopIndiceEverySecond(){

@@ -1,6 +1,6 @@
 /// <reference types="@workadventure/iframe-api-typings" />
 
-console.log('Script inside boat started successfully');
+console.info('Script inside boat started successfully');
 
 // Waiting for the API to be ready
 WA.onInit().then(() => {
