@@ -23,6 +23,8 @@ interface Sentance{
 }
 
 let formPopup: Popup|undefined = undefined;
+let nonExit1Popup: Popup|undefined = undefined;
+let nonExit2Popup: Popup|undefined = undefined;
 let timeOutIndice: NodeJS.Timeout|undefined;
 let timeOutIndiceEverySecond: NodeJS.Timeout|undefined;
 let lastIndice = "noindice";
@@ -131,6 +133,38 @@ WA.onInit().then(() => {
         WA.ui.modal.closeModal();
     });
 
+    WA.room.area.onEnter('noneExit1').subscribe(() => {
+        nonExit1Popup = WA.ui.openPopup("noneExit1Popup", "Hop hop hop... ou vas-tu ?! ", [
+            {
+                label: "Continue",
+                className: "primary",
+                callback: (popup => {
+                    popup.close();
+                    nonExit1Popup = undefined;
+                })
+            }
+        ])
+    });
+    WA.room.area.onLeave('noneExit1').subscribe(() => {
+        nonExit1Popup?.close();
+    });
+
+    WA.room.area.onEnter('noneExit2').subscribe(() => {
+        nonExit2Popup = WA.ui.openPopup("noneExit2Popup", "Hop hop hop... ou vas-tu ?!", [
+            {
+                label: "Continue",
+                className: "primary",
+                callback: (popup => {
+                    popup.close();
+                    nonExit2Popup = undefined;
+                })
+            }
+        ])
+    });
+    WA.room.area.onLeave('noneExit2').subscribe(() => {
+        nonExit2Popup?.close();
+    });
+
     getIndiceEverySecond();
 });
 
@@ -161,7 +195,7 @@ function getIndiceEverySecond(){
 
 function getIndice(force = false): string|undefined{
     if(
-        (WA.player.state.sentance as Sentance).word1 == undefined && 
+        (WA.player.state.sentance as Sentance).word1 === false && 
         (lastIndice != "word1" || force)
     ){
         lastIndice = "word1";
@@ -169,7 +203,7 @@ function getIndice(force = false): string|undefined{
     }
     if(
         (WA.player.state.sentance as Sentance).word1 && 
-        (WA.player.state.sentance as Sentance).word2 == undefined && 
+        (WA.player.state.sentance as Sentance).word2 === false && 
         (lastIndice != "word2" || force)
     ){
         lastIndice = "word2";
@@ -178,7 +212,7 @@ function getIndice(force = false): string|undefined{
     if(
         (WA.player.state.sentance as Sentance).word1 && 
         (WA.player.state.sentance as Sentance).word2 && 
-        (WA.player.state.sentance as Sentance).word3 == undefined && 
+        (WA.player.state.sentance as Sentance).word3 === false && 
         (lastIndice != "word3" || force)
     ){
         lastIndice = "word3";
@@ -188,7 +222,7 @@ function getIndice(force = false): string|undefined{
         (WA.player.state.sentance as Sentance).word1 && 
         (WA.player.state.sentance as Sentance).word2 && 
         (WA.player.state.sentance as Sentance).word3 && 
-        (WA.player.state.sentance as Sentance).word4 == undefined && 
+        (WA.player.state.sentance as Sentance).word4 === false && 
         (lastIndice != "word4" || force)
     ){
         lastIndice = "word4";
@@ -199,7 +233,7 @@ function getIndice(force = false): string|undefined{
         (WA.player.state.sentance as Sentance).word2 && 
         (WA.player.state.sentance as Sentance).word3 && 
         (WA.player.state.sentance as Sentance).word4 && 
-        (WA.player.state.sentance as Sentance).word5 == undefined && 
+        (WA.player.state.sentance as Sentance).word5 === false && 
         (lastIndice != "word5" || force)
     ){
         lastIndice = "word5";
@@ -211,7 +245,7 @@ function getIndice(force = false): string|undefined{
         (WA.player.state.sentance as Sentance).word3 && 
         (WA.player.state.sentance as Sentance).word4 && 
         (WA.player.state.sentance as Sentance).word5 && 
-        (WA.player.state.sentance as Sentance).word6 == undefined && 
+        (WA.player.state.sentance as Sentance).word6 === false && 
         (lastIndice != "word6" || force)
     ){
         lastIndice = "word6";
