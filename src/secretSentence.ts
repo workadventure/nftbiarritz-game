@@ -54,7 +54,7 @@ WA.onInit().then(() => {
     // add start button
     WA.ui.actionBar.addButton({
         id: "start",
-        label: "C'est parti !",
+        label: "Let's go!",
         callback: () => {
             initGame(url);
             WA.ui.modal.closeModal();
@@ -74,7 +74,7 @@ function initGame(url: URL){
         id: "secrect-sentence",
         type: "action",
         imageSrc: `${url.protocol}//${url.host}${url.protocol === 'https:' ? "/nftbiarritz-game/" : '/'}secretSentence/images/key-white.svg`,
-        toolTip: "La phrase secrète",
+        toolTip: "The secret sentence",
         callback: () => {
             if(isOpenSecretSentenceWebsite){
                 WA.ui.modal.closeModal();
@@ -125,7 +125,7 @@ function initGame(url: URL){
                 return (WA.player.state.sentance as Sentance)[word] === true;
             });
             WA.ui.modal.openModal({
-                title: "Félicitation, vous avez trouvé un objet 🎉",
+                title: "Congarts, you found an object 🎉",
                 src: `${url.protocol}//${url.host}${url.protocol === 'https:' ? "/nftbiarritz-game/" : '/'}secretSentence/index.html?current=${word}&words=${wordsFound.join(",")}`,
                 allowApi: true,
                 allow: "microphone; camera",
@@ -150,7 +150,7 @@ function initGame(url: URL){
             (WA.player.state.sentance as Sentance).word6
         ){
             stopIndiceEverySecond();
-            formPopup = WA.ui.openPopup("formPopup", "Bravo tu as trouvé la phrase secrète 🎉🎉", [
+            formPopup = WA.ui.openPopup("formPopup", "Congarts you found the secret sentance 🎉🎉", [
                 {
                     label: "Get your NFT",
                     className: "primary",
@@ -171,7 +171,7 @@ function initGame(url: URL){
                 }
             ]);
         }else{
-            formPopup = WA.ui.openPopup("formPopup", "Il te manque des mots pour accéder au formulaire 😭😭\n\rComme nous sommes très sympas, un indice va apparaître 💪", [
+            formPopup = WA.ui.openPopup("formPopup", "You are missing words to access the form 😭😭\n\rAs we are very nice, an index will appear 💪", [
                 {
                     label: "Continue",
                     className: "primary",
@@ -268,7 +268,7 @@ function getIndice(force = false): string|undefined{
         (lastIndice != "word1" || force)
     ){
         lastIndice = "word1";
-        return "Est-ce que tu aimes les jeux d'échecs avec le capitaine sur le pont ?";
+        return "Do you like chess games with the captain on the deck?";
     }
     if(
         (WA.player.state.sentance as Sentance).word1 && 
@@ -276,7 +276,7 @@ function getIndice(force = false): string|undefined{
         (lastIndice != "word2" || force)
     ){
         lastIndice = "word2";
-        return "Tu pourras découvrir un certain goût pour la chasse en soute !";
+        return "You will discover a certain taste for hunting in the hold!";
     }
     if(
         (WA.player.state.sentance as Sentance).word1 && 
@@ -285,7 +285,7 @@ function getIndice(force = false): string|undefined{
         (lastIndice != "word3" || force)
     ){
         lastIndice = "word3";
-        return "Un trésor se trouve à la vue de tous !";
+        return "A treasure is in plain sight!";
     }
     if(
         (WA.player.state.sentance as Sentance).word1 && 
@@ -295,7 +295,7 @@ function getIndice(force = false): string|undefined{
         (lastIndice != "word4" || force)
     ){
         lastIndice = "word4";
-        return "Bien caché, il faut s'aventurer dans les coins les plus sombres de la soute !";
+        return "Well hidden, you have to venture into the darkest corners of the hold!";
     }
     if(
         (WA.player.state.sentance as Sentance).word1 && 
@@ -306,7 +306,7 @@ function getIndice(force = false): string|undefined{
         (lastIndice != "word5" || force)
     ){
         lastIndice = "word5";
-        return "Est-ce que tu as déjà vu les appartements du capitaine et le trésor qu'il renferme ?"
+        return "Have you ever seen the captain's apartments and the treasure it contains?"
     }
     if(
         (WA.player.state.sentance as Sentance).word1 && 
@@ -318,7 +318,7 @@ function getIndice(force = false): string|undefined{
         (lastIndice != "word6" || force)
     ){
         lastIndice = "word6";
-        return "Un un bateau, un capitaine, un trésor, un chemin secret, une île déseret... Tu pourras y faire une prière !"
+        return "A boat, a captain, a treasure, a secret path, a deserted island ... You can say a prayer there!"
     }
     if(
         (WA.player.state.sentance as Sentance).word1 && 
@@ -330,7 +330,7 @@ function getIndice(force = false): string|undefined{
         lastIndice != "form"
     ){
         lastIndice != "form";
-        return "La fin n'est plus très loin !";
+        return "The end is near!";
     }
     return;
 }
