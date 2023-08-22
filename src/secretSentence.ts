@@ -189,7 +189,7 @@ function initGame(url: URL){
                     id: "indice",
                     bgColor: "#1c1c29",
                     textColor: "#ffffff",
-                    text: `Ton indice : ${getIndice(true)}`,
+                    text: `Your new clue : ${getIndice(true)}`,
                     closable: true,
                 });
             }, 1000);
