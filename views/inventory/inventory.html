@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <meta name="title" content="My inventory">
+
+    <title>My inventory</title>
+    
+    <style>
+        #inventoryContent{
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 4px;
+        }
+        .inventoryItem{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2px;
+            border: solid 1px white;
+            border-radius: 14px;
+            background-color: #00000046;
+        }
+        .inventoryItem img{
+            width: 40px;
+            height: 40px;
+            border-radius: 14px;
+        }
+    </style>
+
+
+    <script src="https://play.staging.workadventu.re/iframe_api.js"></script>
+    
+  <script type="module" crossorigin src="../../assets/inventory-87b0589b.js"></script>
+  <link rel="modulepreload" crossorigin href="../../assets/main-b4a669df.js">
+  <link rel="stylesheet" href="../../assets/main-4ef74437.css">
+</head>
+<body>
+    <main class="p-2">
+        <div id="inventoryContent" class="d-flex align-items-center justify-content-center">
+            <div class="inventoryItem">
+                <img id="treasureEnigma" src="../../assets/avatar-dd3701a2.webp" alt="Treasure Enigma Avatar" />
+            </div>
+            <div class="inventoryItem">
+                <img id="surfEnigma" src="../../assets/avatar-dd3701a2.webp" alt="Surf Enigma Avatar" />
+            </div>
+            <div class="inventoryItem">
+                <img id="waveEnigma" src="../../assets/avatar-dd3701a2.webp" alt="Wave Enigma Avatar" />
+            </div>
+        </div>
+    </main>
+</body>
+</html>
