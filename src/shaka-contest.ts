@@ -29,7 +29,7 @@ WA.onInit().then(() => {
         },
         allowApi: true,
         size: {
-          height: "200px",
+          height: "240px",
           width: "100px"
         },
         margin: {
