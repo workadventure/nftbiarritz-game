@@ -1,1 +1,0 @@
-import"./main-b4a669df.js";document.addEventListener("DOMContentLoaded",()=>{WA.onInit().then(async()=>{const t=document.getElementById("closeButton");t&&t.addEventListener("click",()=>{WA.ui.modal.closeModal()})})});

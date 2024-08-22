@@ -1,0 +1,1 @@
+import"./main-f1f52e58.js";document.addEventListener("DOMContentLoaded",()=>{const n="info1";WA.onInit().then(async()=>{WA.player.getWokaPicture().then(o=>{const e=document.getElementById("avatar");e&&(e.src=o)});const t=document.getElementById("closeButton");t&&t.addEventListener("click",()=>{WA.event.broadcast(`close-${n}`,{})})})});

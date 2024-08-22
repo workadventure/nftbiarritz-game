@@ -1,1 +1,0 @@
-import"./main-b4a669df.js";document.addEventListener("DOMContentLoaded",()=>{const t="waveEnigma";WA.onInit().then(async()=>{const e=document.getElementById("closeButton");e&&e.addEventListener("click",()=>{WA.event.broadcast(`close-${t}`,{})})})});

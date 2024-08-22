@@ -1,0 +1,1 @@
+import"./main-f1f52e58.js";document.addEventListener("DOMContentLoaded",()=>{const e="surfEnigma";WA.onInit().then(async()=>{const t=document.getElementById("closeButton");t&&t.addEventListener("click",()=>{WA.event.broadcast(`close-${e}`,{})})})});
