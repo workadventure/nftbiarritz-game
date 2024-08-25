@@ -60,16 +60,23 @@ abstract class Enigme{
         WA.player.state.saveVariable(this.key, true);
     }
     onEnter(){
-        WA.controls.disablePlayerControls();
-        discussion.openDiscussionWebsite(this.key, () => {
-            this.resolve();
-            this.onLeave();
-        });
+        this._disablePlayerControls();
+        this._openDisucssion();
     }
     onLeave(){
         discussion.closeDiscussionWebsite(this.key);
         WA.controls.restorePlayerControls();
         this.subscriptions.forEach(subscription => subscription.unsubscribe());
+    }
+
+    _disablePlayerControls(){
+        WA.controls.disablePlayerControls();
+    }
+    _openDisucssion(){
+        discussion.openDiscussionWebsite(this.key, () => {
+            this.resolve();
+            this.onLeave();
+        });
     }
 }
 
@@ -93,12 +100,20 @@ class Info1 extends Enigme{
     constructor(){
         super("info1");
     }
+    // Override the onEnter method to keep enable the player controls
+    onEnter(){
+        this._openDisucssion();
+    }
     resolve(){};
 }
 
 class Info2 extends Enigme{
     constructor(){
         super("info2");
+    }
+    // Override the onEnter method to keep enable the player controls
+    onEnter(){
+        this._openDisucssion();
     }
     resolve(){};
 }
@@ -159,6 +174,10 @@ class WaveEnigme extends Enigme{
 class QuitEnigma extends Enigme{
     constructor(){
         super("quit");
+    }
+    // Override the onEnter method to keep enable the player controls
+    onEnter(){
+        this._openDisucssion();
     }
     resolve(){};
 }

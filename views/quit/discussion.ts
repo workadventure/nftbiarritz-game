@@ -1,7 +1,7 @@
 /// <reference types="@workadventure/iframe-api-typings" />
 
 document.addEventListener("DOMContentLoaded", () => {
-    const key = "info2";
+    const key = "quit";
     WA.onInit().then(async () => {
         // Get the avatar and replace by the avatar of the user
         WA.player.getWokaPicture().then((wokaPicture) => {
