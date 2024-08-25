@@ -19,6 +19,7 @@ WA.onInit().then(() => {
     new WaveEnigme();
     new Info1();
     new Info2();
+    new QuitEnigma();
 
     // Open invetory  
     WA.ui.website.open({
@@ -153,4 +154,11 @@ class WaveEnigme extends Enigme{
             );
         }, this.timeToOpenForm);
     }
+}
+
+class QuitEnigma extends Enigme{
+    constructor(){
+        super("quit");
+    }
+    resolve(){};
 }

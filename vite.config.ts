@@ -37,6 +37,7 @@ export default defineConfig({
                 inventory: "./views/inventory/inventory.html",
                 discussion_noboard: "./views/noBoard/discussion.html",
                 modal_waveenigma: "./views/waveEnigma/modal.html",
+                discussion_quit: "./views/quit/discussion.html",
                 ...getMapsScripts(maps),
             },
         },
