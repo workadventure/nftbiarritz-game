@@ -5,6 +5,9 @@ import { Subscription } from "rxjs";
 
 console.info('Shaka contest script loaded...');
 WA.onInit().then(() => {
+    // Disable tutotial
+    WA.player.state.tutorialDone = true;
+
     // Disabled controls for the contest
     WA.controls.disableRoomList();
     WA.controls.restoreRightClick();
