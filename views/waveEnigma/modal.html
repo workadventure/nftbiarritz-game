@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <meta name="title" content="My job wallet">
+
+    <title>Orientation Choice</title>
+    <link rel="stylesheet" href="../styles/main.css">
+    <script src="https://play.staging.workadventu.re/iframe_api.js"></script>
+</head>
+    <body>
+        <div style="background: transparent; 
+            color: white;
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;"
+        >
+            <div
+                id="title"
+                style="font-size: 30px; padding: 25px; font-weight: bold;"
+            >
+                Congart's 🎉
+            </div>
+            <img src="./surfing.gif" alt="map" style="width: 80%; height: auto;">
+            <div id="text" style=" padding: 25px; font-size: 20px;">
+                You have successfully completed the orientation 💪</br>
+                Next step, let us a feedback about your experience 🤔</br>
+                <span style="font-size: 12px; font-style: italic;">(Promise, it will be quick and easy... -1 min 🤩)</span></br>
+            </div>
+            <div class="text-align-right m-2">
+                <button class="btn bg-info cursor-pointer" id="closeButton" style="color: black;">
+                    Feedback 🙏
+                </button>
+            </div>
+        </div>
+        <script src="modal.ts" type="module"></script>
+    </body>
+</html>

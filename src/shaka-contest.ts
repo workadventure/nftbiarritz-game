@@ -1,6 +1,7 @@
 /// <reference types="@workadventure/iframe-api-typings" />
 
 import { discussion } from "./utils/discussion";
+import { Subscription } from "rxjs";
 
 console.info('Shaka contest script loaded...');
 WA.onInit().then(() => {
@@ -43,12 +44,15 @@ WA.onInit().then(() => {
 
 
 abstract class Enigme{
+    protected subscriptions: Subscription[];
     constructor(private key: string){
         this.init();
+        this.subscriptions = [];
     }
     init(){
-        WA.room.area.onEnter(this.key).subscribe(() => this.onEnter());
-        WA.room.area.onLeave(this.key).subscribe(() => this.onLeave());
+        if(!this.subscriptions) this.subscriptions = [];
+        this.subscriptions.push(WA.room.area.onEnter(this.key).subscribe(() => this.onEnter()));
+        this.subscriptions.push(WA.room.area.onLeave(this.key).subscribe(() => this.onLeave()));
     }
 
     resolve(){
@@ -62,8 +66,9 @@ abstract class Enigme{
         });
     }
     onLeave(){
-        discussion.closeDiscussionWebsite();
+        discussion.closeDiscussionWebsite(this.key);
         WA.controls.restorePlayerControls();
+        this.subscriptions.forEach(subscription => subscription.unsubscribe());
     }
 }
 
@@ -115,6 +120,7 @@ class SurfEnigme extends Enigme{
 }
 
 class WaveEnigme extends Enigme{
+    private timeToOpenForm: number = 100;
     constructor(){
         super("waveEnigma");
     }
@@ -127,9 +133,24 @@ class WaveEnigme extends Enigme{
     }
     resolve(){
         super.resolve();
-        discussion.openModalByUrl(
-            "SHAKA Contest form", 
-            "https://docs.google.com/forms/d/e/1FAIpQLSeM4XTvLK-wLIocl8wcLoCcGu_mth-1qWfKwKZfewrrUGyIDg/viewform?embedded=true"
-        );
+        discussion.openModalByView("Biarritz Wave", "waveEnigma", () => {
+            this.openForm();
+        });
+
+            WA.event.on("waveEnigma:closeModal").subscribe(() => {
+                setTimeout(() => {
+                    this.openForm();
+                }, this.timeToOpenForm);
+                WA.ui.modal.closeModal();
+            })
+    }
+
+    private openForm(){
+        setTimeout(() => {
+            discussion.openModalByUrl(
+                "SHAKA Contest form", 
+                "https://docs.google.com/forms/d/e/1FAIpQLSeM4XTvLK-wLIocl8wcLoCcGu_mth-1qWfKwKZfewrrUGyIDg/viewform?embedded=true"
+            );
+        }, this.timeToOpenForm);
     }
 }
